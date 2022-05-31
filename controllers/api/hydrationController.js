@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const {User, Fitness} = require("../../models");
+const {User, Hydration} = require("../../models");
 
-//find all fitness data entries with associated users
+//find all hydration data entries with associated users 
 router.get("/", (req, res) => {
-    Fitness.findAll({ 
+    Hydration.findAll({ 
       include: [User]
     })
-      .then(dbFitness => {
-        res.json(dbFitness);
+      .then(dbHydrations => {
+        res.json(dbHydrations);
       })
       .catch(err => {
         console.log(err);
@@ -16,13 +16,13 @@ router.get("/", (req, res) => {
       });
   });
   
-  //find one fitness data entry and associated user
+  //find one hydration data entry with associated user
   router.get("/:id", (req, res) => {
-    Fitness.findByPk(req.params.id,
+    Hydration.findByPk(req.params.id,
       {include: [User]
     })
-      .then(dbFitness => {
-        res.json(dbFitness);
+      .then(dbHydration => {
+        res.json(dbHydration);
       })
       .catch(err => {
         console.log(err);
@@ -30,18 +30,15 @@ router.get("/", (req, res) => {
       });
   });
   
-  //create fitness data entry 
+  //create hydration data entry with associated users 
   router.post("/", (req, res) => {
-    Fitness.create({
+  Hydration.create({
       // userId:req.session.user.id,
       date:req.body.date,
-      activity_type:req.body.activity_type,
-      activity_duration:req.body.activity_duration,
-      RPE: req.body.RPE,
-      notes: req.body.notes,
+      water_oz:req.body.water_oz,
     })
-      .then(newFitness => {
-        res.json(newFitness);
+      .then(newHydration => {
+        res.json(newHydration);
       })
       .catch(err => {
         console.log(err);
@@ -49,14 +46,14 @@ router.get("/", (req, res) => {
       });
   });
   
-  //update fitness data entry
+  //update hydration data entry
   router.put("/:id", (req, res) => {
-    Fitness.update(req.body, {
+    Hydration.update(req.body, {
       where: {
         id: req.params.id
       }
-    }).then(updatedFitness => {
-      res.json(updatedFitness);
+    }).then(updatedHydration => {
+      res.json(updatedHydration);
     })
     .catch(err => {
       console.log(err);
@@ -64,14 +61,14 @@ router.get("/", (req, res) => {
     });
   });
   
-  //delete fitness data entry
+  //delete hydration data entry
   router.delete("/:id", (req, res) => {
-    Fitness.destroy({
+    Hydration.destroy({
       where: {
         id: req.params.id
       }
-    }).then(delFitness => {
-      res.json(delFitness);
+    }).then(delHydration => {
+      res.json(delHydration);
     })
     .catch(err => {
       console.log(err);

@@ -6,7 +6,7 @@ const Sleep = require("./Sleep.js")
 const Mindfulness = require("./Mindfulness")
 
 User.hasOne(Goals);
-Goals.belongTo(User);
+Goals.belongsTo(User);
 
 User.hasMany(Fitness);
 Fitness.belongsTo(User);
