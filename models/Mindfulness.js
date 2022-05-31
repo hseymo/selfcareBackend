@@ -5,7 +5,7 @@ class Mindfulness extends Model {}
 
 Mindfulness.init({
     date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull:false,
     }, 
     activities_completed: {
