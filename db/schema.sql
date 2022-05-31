@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS selfcare_db;
+CREATE DATABASE selfcare_db;
