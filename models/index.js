@@ -2,8 +2,8 @@ const User = require("./User")
 const Goals = require("./Goals")
 const Fitness = require("./Fitness")
 const Hydration = require("./Hydration")
-const Sleep = require("./Sleep")
-const Mindfulness = require("./Mindfullness")
+const Sleep = require("./Sleep.js")
+const Mindfulness = require("./Mindfulness")
 
 User.hasOne(Goals);
 Goals.belongTo(User);
