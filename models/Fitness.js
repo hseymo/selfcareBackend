@@ -5,7 +5,7 @@ class Fitness extends Model {}
 
 Fitness.init({
     date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull:false,
     }, 
     activity_type: {

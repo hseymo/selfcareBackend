@@ -5,7 +5,7 @@ class Sleep extends Model {}
 
 Sleep.init({
     date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull:false,
     }, 
     time_asleep: {

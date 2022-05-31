@@ -5,7 +5,7 @@ class Hydration extends Model {}
 
 Hydration.init({
     date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull:false,
     }, 
     water_oz: {
