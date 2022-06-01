@@ -4,8 +4,11 @@
   "description": "Backend repo for selfcare back-end",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "node seed/seed.js"
+    "test": "echo \"Error: no test specified\" && exit 1",    
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "resetdb": "mysql -u root -p <  ./db/schema.sql",
+    "seed": "node seeds/index.js"
   },
   "repository": {
     "type": "git",
