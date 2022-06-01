@@ -8,6 +8,7 @@ Mindfulness.init({
         type: DataTypes.DATEONLY,
         allowNull:false,
     }, 
+    // make another model and do a one to many relationship??
     activities_completed: {
         type: DataTypes.CHAR,
     }, 

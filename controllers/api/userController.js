@@ -39,7 +39,7 @@ router.post("/login", (req, res) => {
 });
 
 //protected route, request must include an authorization header with a bearer token
-router.get("/secretclub", (req, res) => {
+router.get("/dashboard", (req, res) => {
   //logging header data
   console.log(req.headers);
   //stripping token info from header data
@@ -56,7 +56,7 @@ router.get("/secretclub", (req, res) => {
       //if no err, user valid, can continue 
       User.findByPk(data.id).then(userData=>{
           console.log(userData.get({plain:true}));
-          res.send(`Welcome to the club, ${userData.email}!`)
+          res.json(`Welcome to the club, ${userData.email}!`)
       })
     }
   });
