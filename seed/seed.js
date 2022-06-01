@@ -90,14 +90,14 @@ const mindfulness = [
 const sleep = [
     {
         date: 2022-01-14,
-        time_asleep: 2200,
+        time_asleep: 8,
         diff_falling_asleep: true,
         diff_staying_asleep: false,
         mood_upon_wake: 'groggy'
     },
     {
         date: 2022-05-8,
-        time_asleep: 2350,
+        time_asleep: 6.5,
         diff_falling_asleep: false,
         diff_staying_asleep: false,
         mood_upon_wake: 'well rested'

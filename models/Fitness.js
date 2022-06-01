@@ -12,6 +12,7 @@ Fitness.init({
         type: DataTypes.CHAR,
         // allowNull:false,
     }, 
+    // duration in minutes
     activity_duration: {
         type: DataTypes.INTEGER,
         // allowNull:false,
