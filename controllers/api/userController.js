@@ -99,7 +99,7 @@ router.post("/login", (req, res) => {
   })
 });
 
-// logout
+// logout - NOT WORKING
 router.get("/logout",(req,res)=>{
   token.destroy()
   console.log('lougout route')
