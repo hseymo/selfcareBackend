@@ -107,11 +107,15 @@ const sleep = [
 // users
 const users = [
     {
-        username: "bobross",
+        first_name: 'bob',
+        last_name: 'ross',
+        email: 'bob@bob.com',
         password: "password"
     },
     {
-        username: "user",
+        first_name: 'user',
+        last_name: 'user',
+        email: 'user@user.com',
         password: "password"
     }
 ];
