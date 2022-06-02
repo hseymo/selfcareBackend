@@ -55,8 +55,11 @@ router.get("/", (req, res) => {
       where: {
         id: req.params.id
       }
-    }).then(updatedMindfullness => {
-      res.json(updatedMindfullness);
+    }).then(updatedMindfulness => {
+      if(!updatedMindfulness) {
+        return res.status(404).json({msg:'not found'})
+      }
+      res.json(updatedMindfulness);
     })
     .catch(err => {
       console.log(err);
@@ -71,6 +74,9 @@ router.get("/", (req, res) => {
         id: req.params.id
       }
     }).then(delMindfulness => {
+      if(!delMindfulness) {
+        return res.status(404).json({msg:'not found'})
+      }
       res.json(delMindfulness);
     })
     .catch(err => {

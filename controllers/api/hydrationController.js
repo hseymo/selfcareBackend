@@ -53,6 +53,9 @@ router.get("/", (req, res) => {
         id: req.params.id
       }
     }).then(updatedHydration => {
+      if(!updatedHydration) {
+        return res.status(404).json({msg:'not found'})
+      }
       res.json(updatedHydration);
     })
     .catch(err => {
@@ -68,6 +71,9 @@ router.get("/", (req, res) => {
         id: req.params.id
       }
     }).then(delHydration => {
+      if(!delHydration) {
+        return res.status(404).json({msg:'not found'})
+      }
       res.json(delHydration);
     })
     .catch(err => {

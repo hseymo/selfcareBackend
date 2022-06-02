@@ -55,6 +55,9 @@ router.get("/", (req, res) => {
         id: req.params.id
       }
     }).then(updatedGoal => {
+      if(!updatedGoal) {
+        return res.status(404).json({msg:'not found'})
+      }
       res.json(updatedGoal);
     })
     .catch(err => {
@@ -70,6 +73,9 @@ router.get("/", (req, res) => {
         id: req.params.id
       }
     }).then(delGoal => {
+      if(!delGoal) {
+        return res.status(404).json({msg:'not found'})
+      }
       res.json(delGoal);
     })
     .catch(err => {

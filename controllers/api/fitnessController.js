@@ -56,6 +56,9 @@ router.get("/", (req, res) => {
         id: req.params.id
       }
     }).then(updatedFitness => {
+      if(!updatedFitness) {
+        return res.status(404).json({msg:'not found'})
+      }
       res.json(updatedFitness);
     })
     .catch(err => {
@@ -71,6 +74,9 @@ router.get("/", (req, res) => {
         id: req.params.id
       }
     }).then(delFitness => {
+      if(!delFitness) {
+        return res.status(404).json({msg:'not found'})
+      }
       res.json(delFitness);
     })
     .catch(err => {
