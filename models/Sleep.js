@@ -10,7 +10,8 @@ Sleep.init({
     }, 
     // hours slept at night
     time_asleep: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
+        allowNull:false,
     }, 
     diff_falling_asleep: {
         type: DataTypes.BOOLEAN,

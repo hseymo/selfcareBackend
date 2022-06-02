@@ -5,56 +5,56 @@ const { User, Goals, Fitness, Hydration, Sleep, Mindfulness } = require("../mode
 // fitness
 const fitness = [
     {
-        date: 06/01/2022,
-        Activity_type: 'Ran a mile',
+        date: '2022-06-02',
+        activity_type: 'Ran a mile',
         activity_duration: 10,
         RPE: 8,
         notes: 'This killed me!',
         userId: 1
     },
     {
-        date: 05/31/2022,
-        Activity_type: 'Walked a trail',
+        date: '05/31/2022',
+        activity_type: 'Walked a trail',
         activity_duration: 120,
         RPE: 3,
         notes: 'Redmond has some nice trails.',
         userId: 1
     },
     {
-        date: 05/29/2022,
-        Activity_type: 'Calisthenics',
+        date: '05-29-2022',
+        activity_type: 'Calisthenics',
         activity_duration: 30,
         RPE: 7,
         notes: '50 pushups, 100 situps, 75 squats!',
         userId: 1
     },
     {
-        date: 05/28/2022,
-        Activity_type: 'Spin class',
+        date: '2022-05-28',
+        activity_type: 'Spin class',
         activity_duration: 45,
         RPE: 8,
         notes: 'Intervals of HIIT with climbs.',
         userId: 1
     },
     {
-        date: 05/26/2022,
-        Activity_type: 'Ran 7 miles',
+        date: '05/26/2022',
+        activity_type: 'Ran 7 miles',
         activity_duration: 60,
         RPE: 8,
         notes: 'Good endurance run on a flat route.',
         userId: 1
     },
     {
-        date: 05/25/2022,
-        Activity_type: 'Barre class',
+        date: '05/25/2022',
+        activity_type: 'Barre class',
         activity_duration: 50,
         RPE: 5,
         notes: 'Focused on core and glutes.',
         userId: 1
     },
     {
-        date: 05/24/2022,
-        Activity_type: 'Bodyweight strength training',
+        date: '05/24/2022',
+        activity_type: 'Bodyweight strength training',
         activity_duration: 45,
         RPE: 8,
         notes: 'Pyramid working totalling 100 reps of each exercise x 8 exercises.',
@@ -99,32 +99,32 @@ const goals = [
 // hydration
 const hydration = [
     {
-        date: 06/01/2022,
+        date: '06/01/2022',
         water_oz: 79,
         userId: 1
     },
     {
-        date: 05/29/2022,
+        date: '05/29/2022',
         water_oz: 123,
         userId: 1
     },
     {
-        date: 05/28/2022,
+        date: '05/28/2022',
         water_oz: 117,
         userId: 1
     },
     {
-        date: 05/27/2022,
+        date: '05/27/2022',
         water_oz: 65,
         userId: 1
     },
     {
-        date: 05/26/2022,
+        date: '05/26/2022',
         water_oz: 64,
         userId: 1
     },
     {
-        date: 05/25/2022,
+        date: '05/25/2022',
         water_oz: 72,
         userId: 1
     }
@@ -133,7 +133,7 @@ const hydration = [
 // mindfulness
 const mindfulness = [
     {
-        date: 05/28/2022,
+        date: '05/28/2022',
         activities_completed: 'upper body routine',
         overall_mood: 'motivated',
         quote_of_the_day: 'A healthy mind starts with a healthy body.',
@@ -145,7 +145,7 @@ const mindfulness = [
 //sleep
 const sleep = [
     {
-        date: 06/1/2022,
+        date: '06/1/2022',
         time_asleep: 9,
         diff_falling_asleep: false,
         diff_staying_asleep: false,
@@ -153,7 +153,7 @@ const sleep = [
         userId: 1
     },
     {
-        date: 05/31/2022,
+        date: '05/31/2022',
         time_asleep: 9,
         diff_falling_asleep: false,
         diff_staying_asleep: false,
@@ -161,7 +161,7 @@ const sleep = [
         userId: 1
     },
     {
-        date: 05/30/2022,
+        date: '05/30/2022',
         time_asleep: 6,
         diff_falling_asleep: false,
         diff_staying_asleep: false,
@@ -169,7 +169,7 @@ const sleep = [
         userId: 1
     },
     {
-        date: 05/29/2022,
+        date: '05/29/2022',
         time_asleep: 8,
         diff_falling_asleep: true,
         diff_staying_asleep: false,
@@ -177,7 +177,7 @@ const sleep = [
         userId: 1
     },
     {
-        date: 05/28/2022,
+        date: '05/28/2022',
         time_asleep: 8,
         diff_falling_asleep: true,
         diff_staying_asleep: false,
@@ -185,7 +185,7 @@ const sleep = [
         userId: 1
     },
     {
-        date: 05/27/2022,
+        date: '05/27/2022',
         time_asleep: 6.5,
         diff_falling_asleep: false,
         diff_staying_asleep: false,

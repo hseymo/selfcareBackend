@@ -10,20 +10,17 @@ Fitness.init({
     }, 
     activity_type: {
         type: DataTypes.CHAR,
-        // allowNull:false,
+        allowNull:false,
     }, 
     // duration in minutes
     activity_duration: {
         type: DataTypes.INTEGER,
-        // allowNull:false,
     }, 
     RPE: {
         type: DataTypes.INTEGER,
-        // allowNull:false,
     },
     notes: {
         type: DataTypes.TEXT,
-        // allowNull:false,
     },
 
 },{

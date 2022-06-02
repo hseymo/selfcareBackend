@@ -37,7 +37,8 @@ User.init({
     modelName: 'user', 
     hooks:{
         beforeCreate: newUser=>{
-            newUser.password = bcrypt.hashSync(newUser.password,4)
+            newUser.password = bcrypt.hashSync(newUser.password,4);
+            return newUser
         }
     }
 });

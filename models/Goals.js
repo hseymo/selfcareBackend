@@ -7,22 +7,18 @@ Goals.init({
     // minutes per week fitness goal
     fitness_time: {
         type: DataTypes.INTEGER,
-        // allowNull:false,
     }, 
     // days per week fitness goal
     fitness_frequency: {
         type: DataTypes.INTEGER,
-        // allowNull:false,
     }, 
     // hours per night fitness goal
     sleep_time: {
-        type: DataTypes.INTEGER,
-        // allowNull:false,
+        type: DataTypes.FLOAT,
     },
     // oz per day hydeation goal
     hydration_oz: {
-        type: DataTypes.INTEGER,
-        // allowNull:false,
+        type: DataTypes.FLOAT,
     },
 
 },{

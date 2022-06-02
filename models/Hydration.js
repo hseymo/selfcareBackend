@@ -10,7 +10,7 @@ Hydration.init({
     }, 
     // cumulative oz throughout the day
     water_oz: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         allowNull:false,
     }, 
 },{
