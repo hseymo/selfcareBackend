@@ -1,39 +1,61 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
-// set token secret and expiration date
-const secret = 'mysecretsshhhhh';
-const expiration = '2h';
+const withAuth = function (req, res, next) {
+  const token = req.headers?.authorization?.split(" ").pop();
+  console.log(token);
+  if (!token) {
+    return res.status(401).json({ msg: "invalid credentials" });
+  }
+  try {
+    const info = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(info);
+    req.user= info.userId
+    next()
+  } catch (err) {
+    return res.status(401).json({ msg: "invalid credentials" });
+  }
+};
 
 module.exports = {
-  // function for our authenticated routes
-  authMiddleware: function (req, res, next) {
-    // allows token to be sent via  req.query or headers
-    let token = req.query.token || req.headers.authorization;
+    withAuth
+}
 
-    // ["Bearer", "<tokenvalue>"]
-    if (req.headers.authorization) {
-      token = token.split(' ').pop().trim();
-    }
+// const jwt = require('jsonwebtoken');
 
-    if (!token) {
-      return res.status(400).json({ message: 'You have no token!' });
-    }
+// // set token secret and expiration date
+// const secret = 'mysecretsshhhhh';
+// const expiration = '2h';
 
-    // verify token and get user data out of it
-    try {
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data;
-    } catch {
-      console.log('Invalid token');
-      return res.status(400).json({ message: 'invalid token!' });
-    }
+// module.exports = {
+//   // function for our authenticated routes
+//   authMiddleware: function (req, res, next) {
+//     // allows token to be sent via  req.query or headers
+//     let token = req.query.token || req.headers.authorization;
 
-    // send to next endpoint
-    next();
-  },
-  signToken: function ({ first_name, last_name, email, userId }) {
-    const payload = { first_name, last_name, email, userId};
+//     // ["Bearer", "<tokenvalue>"]
+//     if (req.headers.authorization) {
+//       token = token.split(' ').pop().trim();
+//     }
 
-    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
-  },
-};
+//     if (!token) {
+//       return res.status(400).json({ message: 'You have no token!' });
+//     }
+
+//     // verify token and get user data out of it
+//     try {
+//       const { data } = jwt.verify(token, secret, { maxAge: expiration });
+//       req.user = data;
+//     } catch {
+//       console.log('Invalid token');
+//       return res.status(400).json({ message: 'invalid token!' });
+//     }
+
+//     // send to next endpoint
+//     next();
+//   },
+//   signToken: function ({ first_name, last_name, email, userId }) {
+//     const payload = { first_name, last_name, email, userId};
+
+//     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+//   },
+// };

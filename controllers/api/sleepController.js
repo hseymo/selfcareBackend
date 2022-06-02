@@ -22,6 +22,9 @@ router.get("/", (req, res) => {
       {include: [User]
     })
       .then(dbSleep => {
+        if(!dbSleep) {
+          return res.status(404).json({msg:'not found'})
+        }
         res.json(dbSleep);
       })
       .catch(err => {
@@ -56,6 +59,9 @@ router.get("/", (req, res) => {
         id: req.params.id
       }
     }).then(updatedSleep => {
+      if(!updatedSleep) {
+        return res.status(404).json({msg:'not found'})
+      }
       res.json(updatedSleep);
     })
     .catch(err => {
@@ -71,6 +77,9 @@ router.get("/", (req, res) => {
         id: req.params.id
       }
     }).then(delSleep => {
+      if(!delSleep) {
+        return res.status(404).json({msg:'not found'})
+      }
       res.json(delSleep);
     })
     .catch(err => {
