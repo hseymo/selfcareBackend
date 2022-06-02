@@ -22,6 +22,9 @@ router.get("/", (req, res) => {
       {include: [User]
     })
       .then(dbHydration => {
+        if(!dbHydration) {
+          return res.status(404).json({msg:'not found'})
+        }
         res.json(dbHydration);
       })
       .catch(err => {

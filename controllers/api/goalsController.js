@@ -22,6 +22,9 @@ router.get("/", (req, res) => {
       {include: [User]
     })
       .then(dbGoal => {
+        if(!dbGoal) {
+          return res.status(404).json({msg:'not found'})
+        }
         res.json(dbGoal);
       })
       .catch(err => {

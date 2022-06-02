@@ -1,10 +1,13 @@
 const express = require('express');
+const { JsonWebTokenError } = require('jsonwebtoken');
 const router = express.Router();
 const {User, Fitness} = require("../../models");
+const { withAuth } = require("../../utils/auth")
 
 //find all fitness data entries with associated users
 router.get("/", (req, res) => {
     Fitness.findAll({ 
+      // where userId??
       include: [User]
     })
       .then(dbFitness => {
@@ -22,6 +25,9 @@ router.get("/", (req, res) => {
       {include: [User]
     })
       .then(dbFitness => {
+        if(!dbFitness) {
+          return res.status(404).json({msg:'not found'})
+        }
         res.json(dbFitness);
       })
       .catch(err => {
@@ -31,9 +37,11 @@ router.get("/", (req, res) => {
   });
   
   //create fitness data entry 
-  router.post("/", (req, res) => {
+  router.post("/", withAuth, (req, res) => {
+
+    console.log(req.user)
     Fitness.create({
-      userId:req.body.userId,
+      userId:req.user,
       date:req.body.date,
       activity_type:req.body.activity_type,
       activity_duration:req.body.activity_duration,
@@ -50,13 +58,14 @@ router.get("/", (req, res) => {
   });
   
   //update fitness data entry
-  router.put("/:id", (req, res) => {
+  router.put("/:id", withAuth, (req, res) => {
     Fitness.update(req.body, {
       where: {
-        id: req.params.id
+        id: req.params.id,
+        userId: req.user
       }
     }).then(updatedFitness => {
-      if(!updatedFitness) {
+      if(!updatedFitness[0]) {
         return res.status(404).json({msg:'not found'})
       }
       res.json(updatedFitness);
@@ -68,10 +77,11 @@ router.get("/", (req, res) => {
   });
   
   //delete fitness data entry
-  router.delete("/:id", (req, res) => {
+  router.delete("/:id", withAuth, (req, res) => {
     Fitness.destroy({
       where: {
-        id: req.params.id
+        id: req.params.id,
+        userId: req.user
       }
     }).then(delFitness => {
       if(!delFitness) {

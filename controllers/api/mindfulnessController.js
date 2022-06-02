@@ -22,6 +22,9 @@ router.get("/", (req, res) => {
       {include: [User]
     })
       .then(dbMindfulness => {
+        if(!dbMindfulness) {
+          return res.status(404).json({msg:'not found'})
+        }
         res.json(dbMindfulness);
       })
       .catch(err => {

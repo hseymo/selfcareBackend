@@ -22,6 +22,9 @@ router.get("/", (req, res) => {
       {include: [User]
     })
       .then(dbSleep => {
+        if(!dbSleep) {
+          return res.status(404).json({msg:'not found'})
+        }
         res.json(dbSleep);
       })
       .catch(err => {

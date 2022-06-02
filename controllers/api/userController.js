@@ -24,6 +24,9 @@ router.get("/:id", (req, res) => {
     include:[Fitness, Goals, Hydration, Mindfulness, Sleep]
   })
     .then(dbUser => {
+      if(!dbUser) {
+        return res.status(404).json({msg:'not found'})
+      }
       res.json(dbUser);
     })
     .catch(err => {
@@ -40,9 +43,9 @@ router.post("/", (req, res) => {
         //data to include.  NOTE: jwts are encoded, not encrypted.  Meaning, the can easily be decoded.  Dont put sensitive data in here
         {
           first_name: newUser.first_name,
-          last_name: newUser.last_name,
-          email: newUser.email,
-          id: newUser.id
+          // last_name: newUser.last_name,
+          // email: newUser.email,
+          userId: newUser.id
         },
         //secret string to verify signature.  should be an env variable for saftey
         process.env.JWT_SECRET,
@@ -64,7 +67,11 @@ router.post("/", (req, res) => {
 
 //login user; find one user by email address. if not found (or password incorrect with bcrypt compare) send 400 bad request (client error). if successful, create session for user.
 router.post("/login", (req, res) => {
-  User.findOne({where:{email:req.body.email}}).then(dbUser=>{
+  User.findOne({
+    where:{
+      email:req.body.email
+    }
+  }).then(dbUser=>{
       if(!dbUser){
         console.log("no user")
           return res.status(403).send("invalid credentials")
@@ -75,8 +82,8 @@ router.post("/login", (req, res) => {
             //data to include.  NOTE: jwts are encoded, not encrypted.  Meaning, the can easily be decoded.  Dont put sensitive data in here
             {
               first_name: dbUser.first_name,
-              last_name: dbUser.last_name,
-              email: dbUser.email,
+              // last_name: dbUser.last_name,
+              // email: dbUser.email,
               id: dbUser.id
             },
             //secret string to verify signature.  should be an env variable for saftey
@@ -86,7 +93,7 @@ router.post("/login", (req, res) => {
               expiresIn: "2h"
             }
           );
-          res.json({ 
+          return res.json({ 
               token: token, 
               user: dbUser
           });
