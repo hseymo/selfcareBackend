@@ -33,7 +33,7 @@ router.get("/", (req, res) => {
   //create fitness data entry 
   router.post("/", (req, res) => {
     Fitness.create({
-      // userId:req.session.user.id,
+      userId:req.body.userId,
       date:req.body.date,
       activity_type:req.body.activity_type,
       activity_duration:req.body.activity_duration,

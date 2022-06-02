@@ -33,7 +33,7 @@ router.get("/", (req, res) => {
   //create goal 
   router.post("/", (req, res) => {
   Goals.create({
-      // userId:req.session.user.id,
+    userId:req.body.userId,
       fitness_time:req.body.fitness_time,
       fitness_frequency:req.body.fitness_frequency,
       sleep_time: req.body.sleep_time,
