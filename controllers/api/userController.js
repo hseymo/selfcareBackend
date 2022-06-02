@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const {User, Fitness, Goals, Hydration, Mindfulness, Sleep} = require("../../models")
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const req = require('express/lib/request');
+const { withAuth } = require("../../utils/auth")
 
 //find all users with associated blogs and comments
 router.get("/", (req, res) => {
@@ -17,6 +19,10 @@ router.get("/", (req, res) => {
       res.status(500).json({ msg: "an error occured", err });
     });
 });
+
+router.get("/verifyToken", withAuth, (req,res) => {
+  res.json({userId: req.user})
+})
 
 //find one user by user id
 router.get("/:id", (req, res) => {
@@ -35,21 +41,15 @@ router.get("/:id", (req, res) => {
     });
 });
 
-//create new user. run hooks (pw bcrpyt). create user session upon creation to automatically log them in.
 router.post("/", (req, res) => {
   User.create(req.body, {individualHooks: true})
     .then(newUser => {
       const token = jwt.sign(
-        //data to include.  NOTE: jwts are encoded, not encrypted.  Meaning, the can easily be decoded.  Dont put sensitive data in here
         {
           first_name: newUser.first_name,
-          // last_name: newUser.last_name,
-          // email: newUser.email,
           userId: newUser.id
         },
-        //secret string to verify signature.  should be an env variable for saftey
         process.env.JWT_SECRET,
-        //options object, expiresIn says how long the token is valid for.  Takes a string
         {
           expiresIn: "2h"
         }
@@ -77,18 +77,12 @@ router.post("/login", (req, res) => {
           return res.status(403).send("invalid credentials")
       } 
       if (bcrypt.compareSync(req.body.password,dbUser.password)) {
-        //creating the token 
           const token = jwt.sign(
-            //data to include.  NOTE: jwts are encoded, not encrypted.  Meaning, the can easily be decoded.  Dont put sensitive data in here
             {
               first_name: dbUser.first_name,
-              // last_name: dbUser.last_name,
-              // email: dbUser.email,
               id: dbUser.id
             },
-            //secret string to verify signature.  should be an env variable for saftey
             process.env.JWT_SECRET,
-            //options object, expiresIn says how long the token is valid for.  Takes a string
             {
               expiresIn: "2h"
             }
@@ -105,12 +99,6 @@ router.post("/login", (req, res) => {
       res.status(500).json({msg:"an error occured",err})
   })
 });
-
-// logout - NOT WORKING
-router.get("/logout",(req,res)=>{
-  token.destroy()
-  console.log('lougout route')
-})
 
 //protected route, request must include an authorization header with a bearer token
 router.get("/dashboard", (req, res) => {
