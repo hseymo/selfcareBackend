@@ -33,7 +33,7 @@ router.get("/", (req, res) => {
   //create sleep data entry 
   router.post("/", (req, res) => {
     Sleep.create({
-      // userId:req.session.user.id,
+      userId:req.body.userId,
       date: req.body.date,
       time_asleep:req.body.time_asleep,
       diff_falling_asleep:req.body.diff_falling_asleep,

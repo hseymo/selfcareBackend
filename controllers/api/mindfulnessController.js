@@ -33,7 +33,7 @@ router.get("/", (req, res) => {
   //create mindfulness data entry
   router.post("/", (req, res) => {
   Mindfulness.create({
-      // userId:req.session.user.id,
+    userId:req.body.userId,
       date:req.body.date,
       activites_completed:req.body.activities_completed,
       overall_mood: req.body.overall_mood,

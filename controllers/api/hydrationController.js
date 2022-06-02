@@ -33,7 +33,7 @@ router.get("/", (req, res) => {
   //create hydration data entry with associated users 
   router.post("/", (req, res) => {
   Hydration.create({
-      // userId:req.session.user.id,
+      userId:req.body.userId,
       date:req.body.date,
       water_oz:req.body.water_oz,
     })
