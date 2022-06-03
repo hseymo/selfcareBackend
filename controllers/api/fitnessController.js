@@ -6,10 +6,7 @@ const { withAuth } = require("../../utils/auth")
 
 //find all fitness data entries with associated users
 router.get("/", (req, res) => {
-    Fitness.findAll({ 
-      // where userId??
-      include: [User]
-    })
+    Fitness.findAll()
       .then(dbFitness => {
         res.json(dbFitness);
       })
@@ -21,9 +18,7 @@ router.get("/", (req, res) => {
   
   //find one fitness data entry and associated user
   router.get("/:id", (req, res) => {
-    Fitness.findByPk(req.params.id,
-      {include: [User]
-    })
+    Fitness.findByPk(req.params.id)
       .then(dbFitness => {
         if(!dbFitness) {
           return res.status(404).json({msg:'not found'})
@@ -37,10 +32,10 @@ router.get("/", (req, res) => {
   });
 
   //find all fitness data entries FOR ONE USER 
-router.get("/user/:id", (req, res) => {
+router.get("/user/:id", withAuth, (req, res) => {
   Fitness.findAll({ 
     where: {
-      userId: req.params.id
+      userId:req.params.id
     }
   })
     .then(dbFitness => {
@@ -54,7 +49,6 @@ router.get("/user/:id", (req, res) => {
   
   //create fitness data entry 
   router.post("/", withAuth, (req, res) => {
-
     console.log(req.user)
     Fitness.create({
       userId:req.user,
@@ -78,7 +72,7 @@ router.get("/user/:id", (req, res) => {
     Fitness.update(req.body, {
       where: {
         id: req.params.id,
-        userId: req.user
+        userId:req.user,
       }
     }).then(updatedFitness => {
       if(!updatedFitness[0]) {

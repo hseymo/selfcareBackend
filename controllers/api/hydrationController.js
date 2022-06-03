@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {User, Hydration} = require("../../models");
+const { withAuth } = require("../../utils/auth")
 
 //find all hydration data entries with associated users 
 router.get("/", (req, res) => {
@@ -34,7 +35,7 @@ router.get("/", (req, res) => {
   });
 
   //find all hydration data entries with associated users 
-router.get("/user/:id", (req, res) => {
+router.get("/user/:id", withAuth, (req, res) => {
   Hydration.findAll({ 
     where: {
       userId: req.params.id
@@ -50,9 +51,9 @@ router.get("/user/:id", (req, res) => {
 });
   
   //create hydration data entry with associated users 
-  router.post("/", (req, res) => {
+  router.post("/", withAuth, (req, res) => {
   Hydration.create({
-      userId:req.body.userId,
+      userId:req.user,
       date:req.body.date,
       water_oz:req.body.water_oz,
     })
@@ -66,9 +67,10 @@ router.get("/user/:id", (req, res) => {
   });
   
   //update hydration data entry
-  router.put("/:id", (req, res) => {
+  router.put("/:id", withAuth, (req, res) => {
     Hydration.update(req.body, {
       where: {
+        userId: req.user,
         id: req.params.id
       }
     }).then(updatedHydration => {
@@ -85,10 +87,11 @@ router.get("/user/:id", (req, res) => {
   });
   
   //delete hydration data entry
-  router.delete("/:id", (req, res) => {
+  router.delete("/:id", withAuth, (req, res) => {
     Hydration.destroy({
       where: {
-        id: req.params.id
+        id: req.params.id,
+        userId: req.user
       }
     }).then(delHydration => {
       if(!delHydration) {

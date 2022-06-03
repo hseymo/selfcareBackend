@@ -65,7 +65,6 @@ const fitness = [
 // goals
 const goals = [
     {
-        id: 1,
         fitness_time: 240,
         fitness_frequency: 5,
         sleep_time: 8,
@@ -73,7 +72,6 @@ const goals = [
         userId: 1
     },
     {
-        id: 2,
         fitness_time: 300,
         fitness_frequency: 3,
         sleep_time: 7,
@@ -81,14 +79,12 @@ const goals = [
         userId: 2
     },
     {
-        id: 3,
         fitness_time: 180,
         fitness_frequency: 6,
         sleep_time: 6.5,
         hydration_oz: 175
     },
     {
-        id: 4,
         fitness_time: 250,
         fitness_frequency: 7,
         sleep_time: 8.5,

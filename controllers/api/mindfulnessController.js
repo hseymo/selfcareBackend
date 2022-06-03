@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {User, Mindfulness} = require("../../models");
+const { withAuth } = require("../../utils/auth")
 
 //find all mindfulness data entries and associated user
 router.get("/", (req, res) => {

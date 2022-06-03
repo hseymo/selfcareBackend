@@ -9,13 +9,14 @@ const withAuth = function (req, res, next) {
   try {
     const info = jwt.verify(token, process.env.JWT_SECRET);
     console.log(info);
-    req.user= info.userId;
-    req.firstname = info.first_name
+    req.user = info.userId;
     next()
   } catch (err) {
     return res.status(401).json({ msg: "invalid credentials" });
   }
 };
+
+
 
 module.exports = {
     withAuth
