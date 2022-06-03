@@ -32,6 +32,22 @@ router.get("/", (req, res) => {
         res.status(500).json({ msg: "an error occured", err });
       });
   });
+
+  //find all hydration data entries with associated users 
+router.get("/user/:id", (req, res) => {
+  Hydration.findAll({ 
+    where: {
+      userId: req.params.id
+    }
+  })
+    .then(dbHydrations => {
+      res.json(dbHydrations);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ msg: "an error occured", err });
+    });
+});
   
   //create hydration data entry with associated users 
   router.post("/", (req, res) => {
@@ -56,7 +72,8 @@ router.get("/", (req, res) => {
         id: req.params.id
       }
     }).then(updatedHydration => {
-      if(!updatedHydration) {
+      console.log(updatedHydration)
+      if(!updatedHydration[0]) {
         return res.status(404).json({msg:'not found'})
       }
       res.json(updatedHydration);
