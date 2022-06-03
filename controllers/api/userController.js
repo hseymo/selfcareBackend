@@ -80,7 +80,7 @@ router.post("/login", (req, res) => {
           const token = jwt.sign(
             {
               first_name: dbUser.first_name,
-              id: dbUser.id
+              userId: dbUser.id
             },
             process.env.JWT_SECRET,
             {
