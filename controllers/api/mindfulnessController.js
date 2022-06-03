@@ -32,6 +32,22 @@ router.get("/", (req, res) => {
         res.status(500).json({ msg: "an error occured", err });
       });
   });
+
+  //find all mindfulness data entries for one user
+router.get("/user/:id", (req, res) => {
+  Mindfulness.findAll({ 
+    where: {
+      userId: req.params.id
+    }
+  })
+    .then(dbMindfulness => {
+      res.json(dbMindfulness);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ msg: "an error occured", err });
+    });
+});
   
   //create mindfulness data entry
   router.post("/", (req, res) => {
@@ -59,7 +75,7 @@ router.get("/", (req, res) => {
         id: req.params.id
       }
     }).then(updatedMindfulness => {
-      if(!updatedMindfulness) {
+      if(!updatedMindfulness[0]) {
         return res.status(404).json({msg:'not found'})
       }
       res.json(updatedMindfulness);

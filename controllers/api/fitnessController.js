@@ -35,6 +35,22 @@ router.get("/", (req, res) => {
         res.status(500).json({ msg: "an error occured", err });
       });
   });
+
+  //find all fitness data entries FOR ONE USER 
+router.get("/user/:id", (req, res) => {
+  Fitness.findAll({ 
+    where: {
+      userId: req.params.id
+    }
+  })
+    .then(dbFitness => {
+      res.json(dbFitness);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ msg: "an error occured", err });
+    });
+});
   
   //create fitness data entry 
   router.post("/", withAuth, (req, res) => {

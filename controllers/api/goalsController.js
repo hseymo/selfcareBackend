@@ -32,6 +32,22 @@ router.get("/", (req, res) => {
         res.status(500).json({ msg: "an error occured", err });
       });
   });
+
+//find all goals with associated users
+router.get("/user/:id", (req, res) => {
+  Goals.findAll({ 
+    where: {
+      userId: req.params.id
+    }
+  })
+    .then(dbGoals => {
+      res.json(dbGoals);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ msg: "an error occured", err });
+    });
+});
   
   //create goal 
   router.post("/", (req, res) => {
@@ -58,7 +74,7 @@ router.get("/", (req, res) => {
         id: req.params.id
       }
     }).then(updatedGoal => {
-      if(!updatedGoal) {
+      if(!updatedGoal[0]) {
         return res.status(404).json({msg:'not found'})
       }
       res.json(updatedGoal);

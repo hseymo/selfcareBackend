@@ -32,6 +32,22 @@ router.get("/", (req, res) => {
         res.status(500).json({ msg: "an error occured", err });
       });
   });
+
+  //find all sleep data entries for one user
+router.get("/user/:id", (req, res) => {
+  Sleep.findAll({ 
+    where: {
+      userId: req.params.id
+    }
+  })
+    .then(dbSleep => {
+      res.json(dbSleep);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ msg: "an error occured", err });
+    });
+});
   
   //create sleep data entry 
   router.post("/", (req, res) => {
@@ -59,7 +75,7 @@ router.get("/", (req, res) => {
         id: req.params.id
       }
     }).then(updatedSleep => {
-      if(!updatedSleep) {
+      if(!updatedSleep[0]) {
         return res.status(404).json({msg:'not found'})
       }
       res.json(updatedSleep);
