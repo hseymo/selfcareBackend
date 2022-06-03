@@ -25,8 +25,8 @@ router.get("/verifyToken", withAuth, (req,res) => {
 })
 
 //find one user by user id
-router.get("/:id", (req, res) => {
-  User.findByPk(req.params.id,{
+router.get("/me", withAuth, (req, res) => {
+  User.findByPk(req.user,{
     include:[Fitness, Goals, Hydration, Mindfulness, Sleep]
   })
     .then(dbUser => {
@@ -58,6 +58,13 @@ router.post("/", (req, res) => {
           token: token, 
           user: newUser
       });
+      Goals.create({
+        userId:newUser.id,
+        fitness_time: 0,
+        fitness_frequency: 0,
+        sleep_time: 0,
+        hydration_oz: 0
+      })
     })
     .catch(err => {
       console.log(err);
@@ -65,7 +72,6 @@ router.post("/", (req, res) => {
     });
 });
 
-//login user; find one user by email address. if not found (or password incorrect with bcrypt compare) send 400 bad request (client error). if successful, create session for user.
 router.post("/login", (req, res) => {
   User.findOne({
     where:{

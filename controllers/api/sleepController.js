@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {User, Sleep} = require("../../models");
+const { withAuth } = require("../../utils/auth")
 
 //find all sleep data entries with associated users
 router.get("/", (req, res) => {
@@ -34,10 +35,10 @@ router.get("/", (req, res) => {
   });
 
   //find all sleep data entries for one user
-router.get("/user/:id", (req, res) => {
+router.get("/user/:id", withAuth, (req, res) => {
   Sleep.findAll({ 
     where: {
-      userId: req.params.id
+      userId:req.params.id,
     }
   })
     .then(dbSleep => {
@@ -52,7 +53,7 @@ router.get("/user/:id", (req, res) => {
   //create sleep data entry 
   router.post("/", (req, res) => {
     Sleep.create({
-      userId:req.body.userId,
+      userId:req.user,
       date: req.body.date,
       time_asleep:req.body.time_asleep,
       diff_falling_asleep:req.body.diff_falling_asleep,

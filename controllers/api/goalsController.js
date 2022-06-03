@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const {User, Goals} = require("../../models");
+const { withAuth } = require("../../utils/auth")
 
 //find all goals with associated users
 router.get("/", (req, res) => {
-    Goals.findAll({ 
-      include: [User]
-    })
+    Goals.findAll()
       .then(dbGoals => {
         res.json(dbGoals);
       })
@@ -18,9 +17,7 @@ router.get("/", (req, res) => {
   
   //find one goal and associated user
   router.get("/:id", (req, res) => {
-    Goals.findByPk(req.params.id,
-      {include: [User]
-    })
+    Goals.findByPk(req.params.id)
       .then(dbGoal => {
         if(!dbGoal) {
           return res.status(404).json({msg:'not found'})
@@ -34,10 +31,10 @@ router.get("/", (req, res) => {
   });
 
 //find all goals with associated users
-router.get("/user/:id", (req, res) => {
+router.get("/user/me", withAuth, (req, res) => {
   Goals.findAll({ 
     where: {
-      userId: req.params.id
+      userId: req.user
     }
   })
     .then(dbGoals => {
@@ -50,9 +47,10 @@ router.get("/user/:id", (req, res) => {
 });
   
   //create goal 
-  router.post("/", (req, res) => {
+  router.post("/", withAuth, (req, res) => {
+    console.log(req.user)
   Goals.create({
-    userId:req.body.userId,
+      userId:req.user,
       fitness_time:req.body.fitness_time,
       fitness_frequency:req.body.fitness_frequency,
       sleep_time: req.body.sleep_time,
@@ -68,10 +66,11 @@ router.get("/user/:id", (req, res) => {
   });
   
   //update goal
-  router.put("/:id", (req, res) => {
+  router.put("/user/me", withAuth, (req, res) => {
     Goals.update(req.body, {
       where: {
-        id: req.params.id
+        id: req.body.id,
+        // userId: req.user
       }
     }).then(updatedGoal => {
       if(!updatedGoal[0]) {
@@ -86,10 +85,11 @@ router.get("/user/:id", (req, res) => {
   });
   
   //delete goal
-  router.delete("/:id", (req, res) => {
+  router.delete("/:id", withAuth, (req, res) => {
     Goals.destroy({
       where: {
-        id: req.params.id
+        id: req.params.id,
+        userId:req.user
       }
     }).then(delGoal => {
       if(!delGoal) {
