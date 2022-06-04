@@ -35,10 +35,10 @@ router.get("/", (req, res) => {
   });
 
   //find all hydration data entries with associated users 
-router.get("/user/:id", withAuth, (req, res) => {
+router.get("/user/me", withAuth, (req, res) => {
   Hydration.findAll({ 
     where: {
-      userId: req.params.id
+      userId: req.user
     }
   })
     .then(dbHydrations => {

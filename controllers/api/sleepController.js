@@ -35,10 +35,10 @@ router.get("/", (req, res) => {
   });
 
   //find all sleep data entries for one user
-router.get("/user/:id", withAuth, (req, res) => {
+router.get("/user/me", withAuth, (req, res) => {
   Sleep.findAll({ 
     where: {
-      userId:req.params.id,
+      userId:req.user,
     }
   })
     .then(dbSleep => {
