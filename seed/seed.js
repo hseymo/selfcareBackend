@@ -29,7 +29,7 @@ const fitness = [
         userId: 1
     },
     {
-        date: '05/31/2022',
+        date: '05-31-2022',
         activity_type: 'Walked a trail',
         activity_duration: 120,
         RPE: 3,
@@ -53,7 +53,7 @@ const fitness = [
         userId: 1
     },
     {
-        date: '05/26/2022',
+        date: '05-26-2022',
         activity_type: 'Ran 7 miles',
         activity_duration: 60,
         RPE: 8,
@@ -61,7 +61,7 @@ const fitness = [
         userId: 1
     },
     {
-        date: '05/25/2022',
+        date: '05-25-2022',
         activity_type: 'Barre class',
         activity_duration: 50,
         RPE: 5,
@@ -69,7 +69,7 @@ const fitness = [
         userId: 1
     },
     {
-        date: '05/24/2022',
+        date: '05-24-2022',
         activity_type: 'Bodyweight strength training',
         activity_duration: 45,
         RPE: 8,
@@ -169,7 +169,7 @@ const sleep = [
     {
         date: '06/6/2022',
         time_asleep: 10,
-        diff_falling_asleep: false,
+        diff_falling_asleep: true,
         diff_staying_asleep: false,
         mood_upon_wake: 'tired',
         userId: 1
