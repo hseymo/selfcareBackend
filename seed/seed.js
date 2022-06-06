@@ -29,7 +29,7 @@ const fitness = [
         userId: 1
     },
     {
-        date: '05-31-2022',
+        date: '2022-05-31',
         activity_type: 'Walked a trail',
         activity_duration: 120,
         RPE: 3,
@@ -37,7 +37,7 @@ const fitness = [
         userId: 1
     },
     {
-        date: '05-29-2022',
+        date: '2022-05-29',
         activity_type: 'Calisthenics',
         activity_duration: 30,
         RPE: 7,
@@ -53,7 +53,7 @@ const fitness = [
         userId: 1
     },
     {
-        date: '05-26-2022',
+        date: '2022-05-26',
         activity_type: 'Ran 7 miles',
         activity_duration: 60,
         RPE: 8,
@@ -61,7 +61,7 @@ const fitness = [
         userId: 1
     },
     {
-        date: '05-25-2022',
+        date: '2022-05-22',
         activity_type: 'Barre class',
         activity_duration: 50,
         RPE: 5,
@@ -69,7 +69,7 @@ const fitness = [
         userId: 1
     },
     {
-        date: '05-24-2022',
+        date: '2022-05-24',
         activity_type: 'Bodyweight strength training',
         activity_duration: 45,
         RPE: 8,
@@ -111,42 +111,42 @@ const goals = [
 // hydration
 const hydration = [
     {
-        date: '06/07/2022',
+        date: '2022-06-07',
         water_oz: 66,
         userId: 1
     },
     {
-        date: '06/06/2022',
+        date: '2022-06-06',
         water_oz: 80,
         userId: 1
     },
     {
-        date: '06/01/2022',
+        date: '2022-06-02',
         water_oz: 79,
         userId: 1
     },
     {
-        date: '05/29/2022',
+        date: '2022-06-01',
         water_oz: 123,
         userId: 1
     },
     {
-        date: '05/28/2022',
+        date: '2022-05-28',
         water_oz: 117,
         userId: 1
     },
     {
-        date: '05/27/2022',
+        date: '2022-05-27',
         water_oz: 65,
         userId: 1
     },
     {
-        date: '05/26/2022',
+        date: '2022-05-26',
         water_oz: 64,
         userId: 1
     },
     {
-        date: '05/25/2022',
+        date: '2022-05-25',
         water_oz: 72,
         userId: 1
     }
@@ -155,7 +155,7 @@ const hydration = [
 // mindfulness
 const mindfulness = [
     {
-        date: '05/28/2022',
+        date: '2022-06-01',
         activities_completed: 'upper body routine',
         overall_mood: 'motivated',
         quote_of_the_day: 'A healthy mind starts with a healthy body.',
@@ -167,7 +167,7 @@ const mindfulness = [
 //sleep
 const sleep = [
     {
-        date: '06/6/2022',
+        date: '2022-06-06',
         time_asleep: 10,
         diff_falling_asleep: true,
         diff_staying_asleep: false,
@@ -175,7 +175,7 @@ const sleep = [
         userId: 1
     },
     {
-        date: '06/7/2022',
+        date: '2022-06-07',
         time_asleep: 6,
         diff_falling_asleep: false,
         diff_staying_asleep: false,
@@ -183,7 +183,7 @@ const sleep = [
         userId: 1
     },
     {
-        date: '06/1/2022',
+        date: '2022-06-01',
         time_asleep: 9,
         diff_falling_asleep: false,
         diff_staying_asleep: false,
@@ -191,7 +191,7 @@ const sleep = [
         userId: 1
     },
     {
-        date: '05/31/2022',
+        date: '2022-05-31',
         time_asleep: 9,
         diff_falling_asleep: false,
         diff_staying_asleep: false,
@@ -199,7 +199,7 @@ const sleep = [
         userId: 1
     },
     {
-        date: '05/30/2022',
+        date: '2022-05-30',
         time_asleep: 6,
         diff_falling_asleep: false,
         diff_staying_asleep: false,
@@ -207,7 +207,7 @@ const sleep = [
         userId: 1
     },
     {
-        date: '05/29/2022',
+        date: '2022-05-29',
         time_asleep: 8,
         diff_falling_asleep: true,
         diff_staying_asleep: false,
@@ -215,7 +215,7 @@ const sleep = [
         userId: 1
     },
     {
-        date: '05/28/2022',
+        date: '2022-05-28',
         time_asleep: 8,
         diff_falling_asleep: true,
         diff_staying_asleep: false,
@@ -223,7 +223,7 @@ const sleep = [
         userId: 1
     },
     {
-        date: '05/27/2022',
+        date: '2022-05-27',
         time_asleep: 6.5,
         diff_falling_asleep: false,
         diff_staying_asleep: false,
