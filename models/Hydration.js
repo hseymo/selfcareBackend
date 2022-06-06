@@ -6,8 +6,7 @@ class Hydration extends Model {}
 Hydration.init({
     date: {
         type: DataTypes.DATEONLY,
-        allowNull:false,
-        unique:true,
+        allowNull:false
     }, 
     // cumulative oz throughout the day
     water_oz: {

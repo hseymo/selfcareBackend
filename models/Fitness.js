@@ -6,8 +6,7 @@ class Fitness extends Model {}
 Fitness.init({
     date: {
         type: DataTypes.DATEONLY,
-        allowNull:false,
-        unique:true,
+        allowNull:false
     }, 
     activity_type: {
         type: DataTypes.CHAR,
@@ -16,6 +15,7 @@ Fitness.init({
     // duration in minutes
     activity_duration: {
         type: DataTypes.INTEGER,
+        allowNull:false,
     }, 
     RPE: {
         type: DataTypes.INTEGER,

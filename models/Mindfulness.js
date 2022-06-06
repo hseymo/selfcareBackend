@@ -6,8 +6,7 @@ class Mindfulness extends Model {}
 Mindfulness.init({
     date: {
         type: DataTypes.DATEONLY,
-        allowNull:false,
-        unique:true,
+        allowNull:false
     }, 
     // make another model and do a one to many relationship??
     activities_completed: {
