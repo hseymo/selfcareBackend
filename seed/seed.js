@@ -5,6 +5,22 @@ const { User, Goals, Fitness, Hydration, Sleep, Mindfulness } = require("../mode
 // fitness
 const fitness = [
     {
+        date: '2022-06-07',
+        activity_type: 'Ran a half marathon',
+        activity_duration: 120,
+        RPE: 8,
+        notes: 'My second half marathon!',
+        userId: 1
+    },
+    {
+        date: '2022-06-06',
+        activity_type: 'Yoga',
+        activity_duration: 60,
+        RPE: 4,
+        notes: 'Power yoga focused on hip openers!',
+        userId: 1
+    },
+    {
         date: '2022-06-02',
         activity_type: 'Ran a mile',
         activity_duration: 10,
@@ -95,6 +111,16 @@ const goals = [
 // hydration
 const hydration = [
     {
+        date: '06/07/2022',
+        water_oz: 66,
+        userId: 1
+    },
+    {
+        date: '06/06/2022',
+        water_oz: 80,
+        userId: 1
+    },
+    {
         date: '06/01/2022',
         water_oz: 79,
         userId: 1
@@ -140,6 +166,22 @@ const mindfulness = [
 
 //sleep
 const sleep = [
+    {
+        date: '06/6/2022',
+        time_asleep: 10,
+        diff_falling_asleep: false,
+        diff_staying_asleep: false,
+        mood_upon_wake: 'tired',
+        userId: 1
+    },
+    {
+        date: '06/7/2022',
+        time_asleep: 6,
+        diff_falling_asleep: false,
+        diff_staying_asleep: false,
+        mood_upon_wake: 'groggy',
+        userId: 1
+    },
     {
         date: '06/1/2022',
         time_asleep: 9,

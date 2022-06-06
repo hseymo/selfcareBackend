@@ -7,6 +7,7 @@ Fitness.init({
     date: {
         type: DataTypes.DATEONLY,
         allowNull:false,
+        unique:true,
     }, 
     activity_type: {
         type: DataTypes.CHAR,

@@ -7,6 +7,7 @@ Hydration.init({
     date: {
         type: DataTypes.DATEONLY,
         allowNull:false,
+        unique:true,
     }, 
     // cumulative oz throughout the day
     water_oz: {

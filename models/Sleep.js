@@ -7,6 +7,7 @@ Sleep.init({
     date: {
         type: DataTypes.DATEONLY,
         allowNull:false,
+        unique:true,
     }, 
     // hours slept at night
     time_asleep: {
