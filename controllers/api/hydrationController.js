@@ -5,9 +5,7 @@ const { withAuth } = require("../../utils/auth")
 
 //find all hydration data entries with associated users 
 router.get("/", (req, res) => {
-    Hydration.findAll({ 
-      include: [User]
-    })
+    Hydration.findAll()
       .then(dbHydrations => {
         res.json(dbHydrations);
       })
@@ -19,9 +17,7 @@ router.get("/", (req, res) => {
   
   //find one hydration data entry with associated user
   router.get("/:id", (req, res) => {
-    Hydration.findByPk(req.params.id,
-      {include: [User]
-    })
+    Hydration.findByPk(req.params.id)
       .then(dbHydration => {
         if(!dbHydration) {
           return res.status(404).json({msg:'not found'})
@@ -33,6 +29,26 @@ router.get("/", (req, res) => {
         res.status(500).json({ msg: "an error occured", err });
       });
   });
+
+    //find one hydration data entry by date and userId
+    router.get("/user/me/:date", (req, res) => {
+      Hydration.findOne({
+        where: {
+          userId: req.user,
+          date: req.params.date
+        }
+      })
+        .then(dbHydration => {
+          if(!dbHydration) {
+            return res.status(404).json({msg:'not found'})
+          }
+          res.json(dbHydration);
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).json({ msg: "an error occured", err });
+        });
+    });
 
   //find all hydration data entries with associated users 
 router.get("/user/me", withAuth, (req, res) => {
@@ -67,11 +83,11 @@ router.get("/user/me", withAuth, (req, res) => {
   });
   
   //update hydration data entry
-  router.put("/:id", withAuth, (req, res) => {
+  router.put("/update", withAuth, (req, res) => {
     Hydration.update(req.body, {
       where: {
         userId: req.user,
-        id: req.params.id
+        date: req.body.date
       }
     }).then(updatedHydration => {
       console.log(updatedHydration)
