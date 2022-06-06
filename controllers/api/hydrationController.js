@@ -16,22 +16,22 @@ router.get("/", (req, res) => {
   });
   
   //find one hydration data entry with associated user
-  router.get("/:id", (req, res) => {
-    Hydration.findByPk(req.params.id)
-      .then(dbHydration => {
-        if(!dbHydration) {
-          return res.status(404).json({msg:'not found'})
-        }
-        res.json(dbHydration);
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({ msg: "an error occured", err });
-      });
-  });
+  // router.get("/:id", (req, res) => {
+  //   Hydration.findByPk(req.params.id)
+  //     .then(dbHydration => {
+  //       if(!dbHydration) {
+  //         return res.status(404).json({msg:'not found'})
+  //       }
+  //       res.json(dbHydration);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //       res.status(500).json({ msg: "an error occured", err });
+  //     });
+  // });
 
     //find one hydration data entry by date and userId
-    router.get("/user/me/:date", (req, res) => {
+    router.get("/user/me/:date", withAuth, (req, res) => {
       Hydration.findOne({
         where: {
           userId: req.user,
@@ -50,7 +50,6 @@ router.get("/", (req, res) => {
         });
     });
 
-  //find all hydration data entries with associated users 
 router.get("/user/me", withAuth, (req, res) => {
   Hydration.findAll({ 
     where: {
@@ -103,10 +102,10 @@ router.get("/user/me", withAuth, (req, res) => {
   });
   
   //delete hydration data entry
-  router.delete("/:id", withAuth, (req, res) => {
+  router.delete("/user/me/:date", withAuth, (req, res) => {
     Hydration.destroy({
       where: {
-        id: req.params.id,
+        date: req.params.date,
         userId: req.user
       }
     }).then(delHydration => {

@@ -18,27 +18,47 @@ router.get("/", (req, res) => {
   });
   
   //find one mindfulness data entry and associated user
-  router.get("/:id", (req, res) => {
-    Mindfulness.findByPk(req.params.id,
-      {include: [User]
-    })
-      .then(dbMindfulness => {
-        if(!dbMindfulness) {
-          return res.status(404).json({msg:'not found'})
+  // router.get("/:id", (req, res) => {
+  //   Mindfulness.findByPk(req.params.id,
+  //     {include: [User]
+  //   })
+  //     .then(dbMindfulness => {
+  //       if(!dbMindfulness) {
+  //         return res.status(404).json({msg:'not found'})
+  //       }
+  //       res.json(dbMindfulness);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //       res.status(500).json({ msg: "an error occured", err });
+  //     });
+  // });
+
+    //find one mindfulness data entry by date and userId
+    router.get("/user/me/:date", withAuth, (req, res) => {
+      Mindfulness.findOne({
+        where: {
+          userId: req.user,
+          date: req.params.date
         }
-        res.json(dbMindfulness);
       })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({ msg: "an error occured", err });
-      });
-  });
+        .then(dbMindfulness => {
+          if(!dbMindfulness) {
+            return res.status(404).json({msg:'not found'})
+          }
+          res.json(dbMindfulness);
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).json({ msg: "an error occured", err });
+        });
+    });
 
   //find all mindfulness data entries for one user
-router.get("/user/:id", (req, res) => {
+router.get("/user/me", withAuth, (req, res) => {
   Mindfulness.findAll({ 
     where: {
-      userId: req.params.id
+      userId: req.user
     }
   })
     .then(dbMindfulness => {
@@ -51,9 +71,9 @@ router.get("/user/:id", (req, res) => {
 });
   
   //create mindfulness data entry
-  router.post("/", (req, res) => {
+  router.post("/", withAuth, (req, res) => {
   Mindfulness.create({
-    userId:req.body.userId,
+    userId:req.user,
       date:req.body.date,
       activites_completed:req.body.activities_completed,
       overall_mood: req.body.overall_mood,
@@ -70,10 +90,11 @@ router.get("/user/:id", (req, res) => {
   });
   
   //update mindfulness data entry
-  router.put("/:id", (req, res) => {
+  router.put("/update", withAuth, (req, res) => {
     Mindfulness.update(req.body, {
       where: {
-        id: req.params.id
+        userId: req.user,
+        date: req.body.date
       }
     }).then(updatedMindfulness => {
       if(!updatedMindfulness[0]) {
@@ -88,10 +109,11 @@ router.get("/user/:id", (req, res) => {
   });
   
   //delete a mindfulness data entry
-  router.delete("/:id", (req, res) => {
+  router.delete("/user/me/:date", withAuth, (req, res) => {
     Mindfulness.destroy({
       where: {
-        id: req.params.id
+        date: req.params.date,
+        userId: req.user
       }
     }).then(delMindfulness => {
       if(!delMindfulness) {
