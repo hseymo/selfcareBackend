@@ -80,7 +80,7 @@ router.post("/login", (req, res) => {
   }).then(dbUser=>{
       if(!dbUser){
         console.log("no user")
-          return res.status(403).send("invalid credentials")
+          return res.status(403).send({msg:"invalid credentials"})
       } 
       if (bcrypt.compareSync(req.body.password,dbUser.password)) {
           const token = jwt.sign(
@@ -98,7 +98,7 @@ router.post("/login", (req, res) => {
               user: dbUser
           });
         } else {
-          return res.status(403).send("invalid credentials");
+          return res.status(403).send({msg:"invalid credentials"});
         }
   }).catch(err=>{
       console.log(err)
