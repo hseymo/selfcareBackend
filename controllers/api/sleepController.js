@@ -16,21 +16,21 @@ router.get("/", (req, res) => {
   });
   
   //find one sleep data entry and associated user
-  // router.get("/:id", (req, res) => {
-  //   Sleep.findByPk(req.params.id,
-  //     {include: [User]
-  //   })
-  //     .then(dbSleep => {
-  //       if(!dbSleep) {
-  //         return res.status(404).json({msg:'not found'})
-  //       }
-  //       res.json(dbSleep);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //       res.status(500).json({ msg: "an error occured", err });
-  //     });
-  // });
+  router.get("/:id", (req, res) => {
+    Sleep.findByPk(req.params.id,
+      {include: [User]
+    })
+      .then(dbSleep => {
+        if(!dbSleep) {
+          return res.status(404).json({msg:'not found'})
+        }
+        res.json(dbSleep);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({ msg: "an error occured", err });
+      });
+  });
 
       //find one sleep data entry by date and userId
       router.get("/user/me/:date", withAuth, (req, res) => {

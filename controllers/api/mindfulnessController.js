@@ -18,21 +18,21 @@ router.get("/", (req, res) => {
   });
   
   //find one mindfulness data entry and associated user
-  // router.get("/:id", (req, res) => {
-  //   Mindfulness.findByPk(req.params.id,
-  //     {include: [User]
-  //   })
-  //     .then(dbMindfulness => {
-  //       if(!dbMindfulness) {
-  //         return res.status(404).json({msg:'not found'})
-  //       }
-  //       res.json(dbMindfulness);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //       res.status(500).json({ msg: "an error occured", err });
-  //     });
-  // });
+  router.get("/:id", (req, res) => {
+    Mindfulness.findByPk(req.params.id,
+      {include: [User]
+    })
+      .then(dbMindfulness => {
+        if(!dbMindfulness) {
+          return res.status(404).json({msg:'not found'})
+        }
+        res.json(dbMindfulness);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({ msg: "an error occured", err });
+      });
+  });
 
     //find one mindfulness data entry by date and userId
     router.get("/user/me/:date", withAuth, (req, res) => {

@@ -17,19 +17,19 @@ router.get("/", (req, res) => {
   });
   
   //find one fitness data entry and associated user
-  // router.get("/:id", (req, res) => {
-  //   Fitness.findByPk(req.params.id)
-  //     .then(dbFitness => {
-  //       if(!dbFitness) {
-  //         return res.status(404).json({msg:'not found'})
-  //       }
-  //       res.json(dbFitness);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //       res.status(500).json({ msg: "an error occured", err });
-  //     });
-  // });
+  router.get("/:id", (req, res) => {
+    Fitness.findByPk(req.params.id)
+      .then(dbFitness => {
+        if(!dbFitness) {
+          return res.status(404).json({msg:'not found'})
+        }
+        res.json(dbFitness);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({ msg: "an error occured", err });
+      });
+  });
 
 
     //find one fitness data entry by date and userId
