@@ -63,7 +63,8 @@ router.post("/", (req, res) => {
         fitness_time: 0,
         fitness_frequency: 0,
         sleep_time: 0,
-        hydration_oz: 0
+        hydration_oz: 0,
+        mindfulness_frequency: 0,
       })
     })
     .catch(err => {
