@@ -16,9 +16,13 @@ Goals.init({
     sleep_time: {
         type: DataTypes.FLOAT,
     },
-    // oz per day hydeation goal
+    // oz per day hydration goal
     hydration_oz: {
         type: DataTypes.FLOAT,
+    },
+    // days per week mindfulness goal
+    mindfulness_frequency: {
+        type: DataTypes.INTEGER,
     },
 
 },{

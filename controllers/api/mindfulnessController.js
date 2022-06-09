@@ -75,7 +75,7 @@ router.get("/user/me", withAuth, (req, res) => {
   Mindfulness.create({
     userId:req.user,
       date:req.body.date,
-      activites_completed:req.body.activities_completed,
+      activities_completed:req.body.activities_completed,
       overall_mood: req.body.overall_mood,
       quote_of_the_day: req.body.quote_of_the_day,
       journal: req.body.journal

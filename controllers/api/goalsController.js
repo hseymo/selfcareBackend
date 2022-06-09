@@ -54,7 +54,8 @@ router.get("/user/me", withAuth, (req, res) => {
       fitness_time:req.body.fitness_time,
       fitness_frequency:req.body.fitness_frequency,
       sleep_time: req.body.sleep_time,
-      hydration_oz: req.body.hydration_oz
+      hydration_oz: req.body.hydration_oz,
+      mindfulness_time: req.body.mindfulness_time
     })
       .then(newGoal => {
         res.json(newGoal);

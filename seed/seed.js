@@ -85,6 +85,7 @@ const goals = [
         fitness_frequency: 5,
         sleep_time: 8,
         hydration_oz: 150,
+        mindfulness_frequency: 3,
         userId: 1
     },
     {
@@ -92,13 +93,15 @@ const goals = [
         fitness_frequency: 3,
         sleep_time: 7,
         hydration_oz: 125,
+        mindfulness_frequency: 5,
         userId: 2
     },
     {
         fitness_time: 180,
         fitness_frequency: 6,
         sleep_time: 6.5,
-        hydration_oz: 175
+        hydration_oz: 175,
+        mindfulness_frequency: 4,
     },
     {
         fitness_time: 250,
@@ -156,12 +159,20 @@ const hydration = [
 const mindfulness = [
     {
         date: '2022-06-01',
-        activities_completed: 'upper body routine',
+        activities_completed: 'walk, yoga',
         overall_mood: 'motivated',
         quote_of_the_day: 'A healthy mind starts with a healthy body.',
-        journal: 'This is the journal where users can place notes and jot things about their workout.',
+        journal: 'Today was a wonderful day. I went for walk and did yoga with my friends',
         userId: 1
-    }
+    },
+    {
+        date: '2022-06-08',
+        activities_completed: 'meditation',
+        overall_mood: 'calm',
+        quote_of_the_day: 'Realize deeply that the present moment is all you ever have. -Eckhart Tolle',
+        userId: 1
+    },
+     
 ]
 
 //sleep
