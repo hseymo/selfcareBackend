@@ -14,10 +14,10 @@ Sleep.init({
         allowNull:false,
     }, 
     diff_falling_asleep: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
     }, 
     diff_staying_asleep: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
     }, 
     mood_upon_wake: {
         type: DataTypes.STRING,
