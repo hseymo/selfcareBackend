@@ -180,64 +180,64 @@ const sleep = [
     {
         date: '2022-06-06',
         time_asleep: 10,
-        diff_falling_asleep: true,
-        diff_staying_asleep: false,
+        diff_falling_asleep: 'true',
+        diff_staying_asleep: 'false',
         mood_upon_wake: 'tired',
         userId: 1
     },
     {
         date: '2022-06-07',
         time_asleep: 6,
-        diff_falling_asleep: false,
-        diff_staying_asleep: false,
+        diff_falling_asleep: 'false',
+        diff_staying_asleep: 'false',
         mood_upon_wake: 'groggy',
         userId: 1
     },
     {
         date: '2022-06-01',
         time_asleep: 9,
-        diff_falling_asleep: false,
-        diff_staying_asleep: false,
+        diff_falling_asleep: 'false',
+        diff_staying_asleep: 'false',
         mood_upon_wake: 'overslept',
         userId: 1
     },
     {
         date: '2022-05-31',
         time_asleep: 9,
-        diff_falling_asleep: false,
-        diff_staying_asleep: false,
+        diff_falling_asleep: 'false',
+        diff_staying_asleep: 'false',
         mood_upon_wake: 'rested',
         userId: 1
     },
     {
         date: '2022-05-30',
         time_asleep: 6,
-        diff_falling_asleep: false,
-        diff_staying_asleep: false,
+        diff_falling_asleep: 'false',
+        diff_staying_asleep: 'false',
         mood_upon_wake: 'tired',
         userId: 1
     },
     {
         date: '2022-05-29',
         time_asleep: 8,
-        diff_falling_asleep: true,
-        diff_staying_asleep: false,
+        diff_falling_asleep: 'true',
+        diff_staying_asleep: 'false',
         mood_upon_wake: 'fine',
         userId: 1
     },
     {
         date: '2022-05-28',
         time_asleep: 8,
-        diff_falling_asleep: true,
-        diff_staying_asleep: false,
+        diff_falling_asleep: 'true',
+        diff_staying_asleep: 'false',
         mood_upon_wake: 'groggy',
         userId: 1
     },
     {
         date: '2022-05-27',
         time_asleep: 6.5,
-        diff_falling_asleep: false,
-        diff_staying_asleep: false,
+        diff_falling_asleep: 'false',
+        diff_staying_asleep: 'false',
         mood_upon_wake: 'well rested',
         userId: 1
     }
